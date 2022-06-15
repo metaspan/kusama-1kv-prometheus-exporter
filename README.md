@@ -43,6 +43,14 @@ ksm_1kv_score_democracy{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"}
 ksm_1kv_score_randomness{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1.0700408314136043
 ```
 
+# Grafana Panel config
+
+![image](https://user-images.githubusercontent.com/1845970/173845360-e82e065d-bb5a-4ecc-b214-211006185c4e.png)
+
+Metric: `dot_1kv_score{category=~"spanInclusion|inclusion|discovered|nominated|rank|unclaimed|bonded|faults|offline|location|councilStake|democracy|randomness"}`
+
+Legend: `{{category}}`
+
 # Useage
 
 ```
