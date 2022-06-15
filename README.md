@@ -3,7 +3,7 @@ Prometheus Exporter for Kusama 1KV
 
 # Hosted service
 
-A hosted service is available here: https://ksm-1kv-prometheus.metaspan.io/<stash>
+A hosted service is available here: http://ksm-1kv-prometheus.metaspan.io/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
 If you use the service please consider supporting us (see below)
 
 # Useage
