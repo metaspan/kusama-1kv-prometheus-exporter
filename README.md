@@ -21,11 +21,9 @@ node prometheus-exporter.js
 ```yml
 scrape_configs:
   - job_name: "ksm-1kv"
+    metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
     static_configs:
-    - targets: ["192.168.1.1:3000"]
-    #  labels:
-    #    alias: 'ksm1'
-    #    type: 'kusama-validator'
+    - targets: ["192.168.1.20:3000"]
 ```
 
 ## Example output
@@ -45,7 +43,6 @@ ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="UNCLAIMED_REWARDS"} 1
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="BLOCKED"} 1
 ksm_1kv_score_updated{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655290532577
-ksm_1kv_score_address{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
 ksm_1kv_score_total{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 270.5390898836776
 ksm_1kv_score_aggregate{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 252.8306228522842
 ksm_1kv_score_spanInclusion{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0

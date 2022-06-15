@@ -1,4 +1,3 @@
-// const promBundle = require("express-prom-bundle");
 import express from 'express'
 const app = express()
 import ValidatorExporter from './validator-exporter.js'
@@ -8,12 +7,14 @@ const PORT = 3000
 const config ={
 	url: 'https://kusama.w3f.community/candidates',
 	token: 'KSM',
-    interval: 60 * 1000
+    interval: 10 * 60 * 1000 // 10 * 60 seconds = 10 mins
 }
+
 let worker = new ValidatorExporter.ValidatorExporter(config)
 
 app.get('/', (req, res) => {
-	res.send('nothing to see here... try /metrics/&lt;stash&gt;')
+	res.set("Content-Type","text/plain; version=0.0.4")
+        .send('nothing to see here... try /metrics/&lt;stash&gt;')
 })
 
 app.get('/metrics/:stash', async (req, res) => {

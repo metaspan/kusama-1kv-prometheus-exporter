@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Prometheus Exporter for Kusama 1KV",
   "main": "prometheus-exporter.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/metaspan/kusama-1kv-prometheus-exporter#readme",
   "dependencies": {
     "axios": "^0.27.2",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "moment-timezone": "^0.5.34"
   }
 }
