@@ -3,28 +3,11 @@ Prometheus Exporter for Kusama 1KV
 
 # Hosted service
 
-A hosted service is available here: http://ksm-1kv-prometheus.metaspan.io/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
-If you use the service please consider supporting us (see below)
-
-# Useage
-
-```
-git clone https://github.com/metaspan/kusama-1kv-prometheus-exporter
-cd kusama-1kv-prometheus-exporter
-npm install
-# edit PORT in prometheus-exporter.js
-node prometheus-exporter.js
-```
-
-## Configure prometheus.yml
-
-```yml
-scrape_configs:
-  - job_name: "ksm-1kv"
-    metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
-    static_configs:
-    - targets: ["192.168.1.20:3000"]
-```
+A hosted service is available here: `http://ksm-1kv-prometheus.metaspan.io/metrics/<stash>`
+\
+Update interval: 10 mins - see **scrape_interval** below
+\
+If you use the service please consider **supporting us** (see below)
 
 ## Example output
 
@@ -58,6 +41,27 @@ ksm_1kv_score_location{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 
 ksm_1kv_score_councilStake{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 37.5
 ksm_1kv_score_democracy{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 21.132075471698116
 ksm_1kv_score_randomness{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1.0700408314136043
+```
+
+# Useage
+
+```
+git clone https://github.com/metaspan/kusama-1kv-prometheus-exporter
+cd kusama-1kv-prometheus-exporter
+npm install
+# edit PORT in prometheus-exporter.js
+node prometheus-exporter.js
+```
+
+## Configure prometheus.yml
+
+```yml
+scrape_configs:
+  - job_name: "ksm-1kv"
+    scrape_interval: 600s
+    metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
+    static_configs:
+    - targets: ["192.168.1.20:3000"]
 ```
 
 # Support us
