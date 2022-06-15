@@ -1,2 +1,74 @@
 # kusama-1kv-prometheus-exporter
 Prometheus Exporter for Kusama 1KV
+
+# Hosted service
+
+A hosted service is available here: https://ksm-1kv-prometheus.metaspan.io/<stash>
+If you use the service please consider supporting us (see below)
+
+# Useage
+
+```
+git clone https://github.com/metaspan/kusama-1kv-prometheus-exporter
+cd kusama-1kv-prometheus-exporter
+npm install
+# edit PORT in prometheus-exporter.js
+node prometheus-exporter.js
+```
+
+## Configure prometheus.yml
+
+```yml
+scrape_configs:
+  - job_name: "ksm-1kv"
+    static_configs:
+    - targets: ["192.168.1.1:3000"]
+    #  labels:
+    #    alias: 'ksm1'
+    #    type: 'kusama-validator'
+```
+
+## Example output
+
+```
+ksm_1kv_updated_at{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655290636179
+ksm_1kv_valid{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1
+ksm_1kv_active{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="CLIENT_UPGRADE"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ACCUMULATED_OFFLINE_TIME"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="COMMISION"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="VALIDATE_INTENTION"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="SELF_STAKE"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ONLINE"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="CONNECTION_TIME"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="IDENTITY"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="UNCLAIMED_REWARDS"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="BLOCKED"} 1
+ksm_1kv_score_updated{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655290532577
+ksm_1kv_score_address{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+ksm_1kv_score_total{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 270.5390898836776
+ksm_1kv_score_aggregate{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 252.8306228522842
+ksm_1kv_score_spanInclusion{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score_inclusion{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 87.49999999999999
+ksm_1kv_score_discovered{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score_nominated{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 11.680892013354473
+ksm_1kv_score_rank{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0.017655367231638415
+ksm_1kv_score_unclaimed{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score_bonded{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 50
+ksm_1kv_score_faults{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 5
+ksm_1kv_score_offline{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score_location{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 40
+ksm_1kv_score_councilStake{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 37.5
+ksm_1kv_score_democracy{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 21.132075471698116
+ksm_1kv_score_randomness{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1.0700408314136043
+```
+
+# Support us
+
+## Tips welcome
+
+KSM: HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+
+## Staking
+
+Please nominate our METASPAN-KSM validator!
