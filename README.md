@@ -53,6 +53,25 @@ npm install
 node prometheus-exporter.js
 ```
 
+### PM2
+
+```
+pm2 start prometheus-exporter.js
+pm2 list
+┌─────┬────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name                   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ prometheus-exporter    │ default     │ 1.0.0   │ fork    │ 1408738  │ 36m    │ 36   │ online    │ 0%       │ 67.7mb   │ derek    │ disabled │
+└─────┴────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+pm2 logs 0
+
+0|prometheus-exporter  | { stash: 'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx' }
+0|prometheus-exporter  | 2022-06-15 12:27:48|ksm_1kv|query() stash: HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+0|prometheus-exporter  | { stash: 'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx' }
+0|prometheus-exporter  | 2022-06-15 12:28:03|ksm_1kv|query() stash: HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+```
+
+
 ## Configure prometheus.yml
 
 ```yml
