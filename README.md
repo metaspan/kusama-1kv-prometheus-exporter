@@ -3,7 +3,7 @@ Prometheus Exporter for Kusama 1KV
 
 # Hosted service
 
-A hosted service is available here: http://ksm-1kv-prometheus.metaspan.io/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+A hosted service is available here: http://ksm-1kv-prometheus.metaspan.io/metrics/<stash>
 If you use the service please consider supporting us (see below)
 
 # Useage
@@ -29,36 +29,42 @@ scrape_configs:
 ## Example output
 
 ```
-ksm_1kv_updated_at{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655290636179
+ksm_1kv_updated_at{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655300169537
 ksm_1kv_valid{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1
 ksm_1kv_active{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="CLIENT_UPGRADE"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ACCUMULATED_OFFLINE_TIME"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="COMMISION"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="VALIDATE_INTENTION"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="SELF_STAKE"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ONLINE"} 1
-ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="CONNECTION_TIME"} 1
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="IDENTITY"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="CONNECTION_TIME"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="COMMISION"} 1
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="UNCLAIMED_REWARDS"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ONLINE"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="ACCUMULATED_OFFLINE_TIME"} 1
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="SELF_STAKE"} 1
 ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="BLOCKED"} 1
-ksm_1kv_score_updated{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655290532577
-ksm_1kv_score_total{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 270.5390898836776
-ksm_1kv_score_aggregate{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 252.8306228522842
-ksm_1kv_score_spanInclusion{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
-ksm_1kv_score_inclusion{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 87.49999999999999
-ksm_1kv_score_discovered{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
-ksm_1kv_score_nominated{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 11.680892013354473
-ksm_1kv_score_rank{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0.017655367231638415
-ksm_1kv_score_unclaimed{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
-ksm_1kv_score_bonded{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 50
-ksm_1kv_score_faults{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 5
-ksm_1kv_score_offline{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
-ksm_1kv_score_location{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 40
-ksm_1kv_score_councilStake{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 37.5
-ksm_1kv_score_democracy{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 21.132075471698116
-ksm_1kv_score_randomness{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1.0700408314136043
+ksm_1kv_validity{stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx", type="VALIDATE_INTENTION"} 1
+ksm_1kv_score{category="updated", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1655300132304
+ksm_1kv_score{category="total", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 290.26291682421623
+ksm_1kv_score{category="aggregate", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 260.6202779362222
+ksm_1kv_score{category="spanInclusion", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score{category="inclusion", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 94.59459459459467
+ksm_1kv_score{category="discovered", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score{category="nominated", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 10.375964962378266
+ksm_1kv_score{category="rank", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0.017642907551164433
+ksm_1kv_score{category="unclaimed", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 0
+ksm_1kv_score{category="bonded", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 50
+ksm_1kv_score{category="faults", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 5
+ksm_1kv_score{category="offline", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 2
+ksm_1kv_score{category="location", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 40
+ksm_1kv_score{category="councilStake", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 37.5
+ksm_1kv_score{category="democracy", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 21.132075471698116
+ksm_1kv_score{category="randomness", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"} 1.1137388046806092
 ```
+
+# Grafana Panel config
+
+Metric: `ksm_1kv_score{category=~"spanInclusion|inclusion|discovered|nominated|rank|unclaimed|bonded|faults|offline|location|councilStake|democracy|randomness"}`
+
+Legend: `{{category}}`
 
 # Support us
 
