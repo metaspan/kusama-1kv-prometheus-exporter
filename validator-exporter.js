@@ -21,59 +21,60 @@ const DEFAULT_CONFIG = {
     trace: true
 }
 
-// const exampleResponse = {
-//     "discoveredAt":1644239915715,
-//     "nominatedAt":1655275516399,
+// const example = {
+//     "discoveredAt":1623857863032,
+//     "nominatedAt":1655292612690,
 //     "offlineSince":0,
 //     "offlineAccumulated":0,
-//     "rank":55,
-//     "faults":5,
+//     "rank":53,
+//     "faults":0,
 //     "invalidityReasons":"",
 //     "unclaimedEras":[],
-//     "inclusion":0.3333333333333333,
-//     "name":"E-KAT",
-//     "stash":"DzF1mzay4Nm1vepKtMWAAMaxZeovTjCZEzBLEx6J7Bnf4bd",
-//     "kusamaStash":"",
-//     "commission":10,
-//     "identity":{"name":"EKAT","verified":true,"_id":"62a992c7c58906b15dd2e8aa"},
+//     "inclusion":0.13095238095238096,
+//     "name":"michalis",
+//     "stash":"1jA1Eh3j8RmB4dR9BRPRexEUasu22DEbFCakGHo6VaqjdD8",
+//     "kusamaStash":"FZyFBAqs93TenupzDHJzW1pxFLxwwo1EJLvT89jhrV368yb",
+//     "commission":3,
+//     "identity":{"name":"michalis","sub":"abundance","verified":true,"_id":"62a9d469dd4e1fae856d60be"},
 //     "active":false,
 //     "valid":true,
 //     "validity":[
-//         {"valid":true,"type":"CLIENT_UPGRADE","details":"","updated":1655278035141,"_id":"62a989d3c58906b15dcb3e10"},
-//         {"valid":true,"type":"COMMISION","details":"","updated":1655278035185,"_id":"62a989d3c58906b15dcb3e47"},
-//         {"valid":true,"type":"IDENTITY","details":"","updated":1655279242302,"_id":"62a98e8ac58906b15dcf8a7c"},
-//         {"valid":true,"type":"ONLINE","details":"","updated":1655280558158,"_id":"62a993aec58906b15dd3dd2c"},
-//         {"valid":true,"type":"VALIDATE_INTENTION","details":"","updated":1655280558761,"_id":"62a993aec58906b15dd3dd3f"},
-//         {"valid":true,"type":"CONNECTION_TIME","details":"","updated":1655280558774,"_id":"62a993aec58906b15dd3dd4c"},
-//         {"valid":true,"type":"ACCUMULATED_OFFLINE_TIME","details":"","updated":1655280558852,"_id":"62a993aec58906b15dd3dd82"},
-//         {"valid":true,"type":"SELF_STAKE","details":"","updated":1655280558938,"_id":"62a993aec58906b15dd3dd91"},
-//         {"valid":true,"type":"UNCLAIMED_REWARDS","details":"","updated":1655280558970,"_id":"62a993aec58906b15dd3dd9f"},
-//         {"valid":true,"type":"BLOCKED","details":"","updated":1655280559052,"_id":"62a993afc58906b15dd3ddad"}
+//         {"valid":true,"type":"CLIENT_UPGRADE","details":"","updated":1655286084186,"_id":"62a9a944e0b81d92cd0886e9"},
+//         {"valid":true,"type":"VALIDATE_INTENTION","details":"","updated":1655292981815,"_id":"62a9c4356a405bfb3650a6d1"},
+//         {"valid":true,"type":"ACCUMULATED_OFFLINE_TIME","details":"","updated":1655293872847,"_id":"62a9c7b06a405bfb36517012"},
+//         {"valid":true,"type":"ONLINE","details":"","updated":1655296883716,"_id":"62a9d373dd4e1fae856d0acf"},
+//         {"valid":true,"type":"CONNECTION_TIME","details":"","updated":1655296883883,"_id":"62a9d373dd4e1fae856d0aef"},
+//         {"valid":true,"type":"IDENTITY","details":"","updated":1655296883964,"_id":"62a9d373dd4e1fae856d0b0f"},
+//         {"valid":true,"type":"REWARD_DESTINATION","details":"","updated":1655296883986,"_id":"62a9d373dd4e1fae856d0b20"},
+//         {"valid":true,"type":"COMMISION","details":"","updated":1655296884034,"_id":"62a9d374dd4e1fae856d0b30"},
+//         {"valid":true,"type":"SELF_STAKE","details":"","updated":1655296884078,"_id":"62a9d374dd4e1fae856d0b40"},
+//         {"valid":true,"type":"UNCLAIMED_REWARDS","details":"","updated":1655296884109,"_id":"62a9d374dd4e1fae856d0b50"},
+//         {"valid":true,"type":"BLOCKED","details":"","updated":1655296884137,"_id":"62a9d374dd4e1fae856d0b60"},
+//         {"valid":true,"type":"KUSAMA_RANK","details":"","updated":1655296884168,"_id":"62a9d374dd4e1fae856d0b70"}
 //     ],
 //     "score":{
-//         "_id":"620a59aafe937eb3a8084db5",
-//         "updated":1655280640361,
-//         "address":"DzF1mzay4Nm1vepKtMWAAMaxZeovTjCZEzBLEx6J7Bnf4bd",
-//         "total":424.97380601076947,
-//         "aggregate":386.2102637024609,
+//         "_id":"615ab6dc418add00122d4018",
+//         "address":"1jA1Eh3j8RmB4dR9BRPRexEUasu22DEbFCakGHo6VaqjdD8",
+//         "updated":1655297705742,
+//         "total":407.3997412225055,
+//         "aggregate":355.3523044508179,
+//         "inclusion":25,
 //         "spanInclusion":100,
-//         "inclusion":57.14285714285715,
-//         "discovered":0.6171999992839949,
-//         "nominated":0.036859588953073175,
-//         "rank":0.6648005598320503,
+//         "discovered":2.737728325165917,
+//         "nominated":0,
+//         "rank":1.577761081893313,
 //         "unclaimed":0,
-//         "bonded":49.132359718386624,
-//         "faults":1.7105263157894834,
-//         "offline":2,
+//         "bonded":29.03681504375866,
+//         "faults":5,"offline":2,
+//         "randomness":1.1464671429445905,"__v":0,
 //         "location":40,
 //         "councilStake":50,
-//         "democracy":84.90566037735849,
-//         "randomness":1.1003690112652529,
-//         "__v":0
+//         "democracy":100
 //     },
-//     "total":424.97380601076947,
-//     "location":"Calw",
-//     "councilStake":"90.3","councilVotes":["DbF59HrqrrPh9L2Fi4EBd7gn4xFUSXmrE6zyMzf3pETXLvg","JKoSyjg9nvVZterFB5XssM7eaYj4Ty6LhCLRGUfy6NKGNC3","DMF8a34emwapz9mV5P5PTDcghh1ZR3miH9ad9mHzfAUMSXU"],"democracyVoteCount":34,"democracyVotes":[174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207]
+//     "total":407.3997412225055,
+//     "location":"Lille",
+//     "councilStake":"6227.4490967828","councilVotes":["1hCMdtRsaRA4ZTEKpPKPvEjK9rZpGhyFnRHSDhqFMCEayRL","1363HWTPzDrzAQ6ChFiMU6mP4b6jmQid2ae55JQcKtZnpLGv","12NLgzqfhuJkc9mZ5XUTTG85N8yhhzfptwqF1xVhtK3ZX7f6","13RDY9nrJpyTDBSUdBw12dGwhk19sGwsrVZ2bxkzYHBSagP2","12hAtDZJGt4of3m2GqZcUCVAjZPALfvPwvtUTFZPQUbdX1Ud","14DQEq1XtPvntMyUFbgcDCSce79s1CBum3rBYrEeB66qgTqG","128qRiVjxU3TuT37tg7AX99zwqfPtj2t4nDKUv9Dvi5wzxuF","1rwgen2jqJNNg7DpUA4jBvMjyepgiFKLLm3Bwt8pKQYP8Xf"],"democracyVoteCount":16,
+//     "democracyVotes":[50,51,53,54,55,56,57,58,59,60,61,62,63,64,65,66]
 // }
 
 class ValidatorExporter {
@@ -137,6 +138,7 @@ class ValidatorExporter {
                     var items = []
                     try {
                         items.push(`${this.config.prefix}_updated_at{stash="${stash}"} ${this.updatedAt.valueOf()}`)
+                        items.push(`${this.config.prefix}_rank{stash="${stash}"} ${validator.rank}`)
                         items.push(`${this.config.prefix}_valid{stash="${stash}"} ${validator.valid ? 1 : 0}`)
                         items.push(`${this.config.prefix}_active{stash="${stash}"} ${validator.active ? 1 : 0}`)
                         validator.validity.forEach(v => {
@@ -145,7 +147,7 @@ class ValidatorExporter {
                         Object.keys(validator.score).forEach(k => {
                             // this.slog(`checking key ${k}`)
                             if (!['_id', 'address', 'stash', '__v'].includes(k)) {
-                                items.push(`${this.config.prefix}_score_${k}{stash="${stash}"} ${validator.score[k]}`)
+                                items.push(`${this.config.prefix}_score{category="${k}", stash="${stash}"} ${validator.score[k]}`)
                             }
                         })
                         resolve(items.join("\n"))

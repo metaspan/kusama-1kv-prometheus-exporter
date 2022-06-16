@@ -7,6 +7,8 @@ const PORT = 3000
 const config ={
 	url: 'https://kusama.w3f.community/candidates',
 	token: 'KSM',
+    // url: 'https://polkadot.w3f.community/candidates',
+	// token: 'DOT',
     interval: 10 * 60 * 1000 // 10 * 60 seconds = 10 mins
 }
 
@@ -14,7 +16,7 @@ let worker = new ValidatorExporter.ValidatorExporter(config)
 
 app.get('/', (req, res) => {
 	res.set("Content-Type","text/plain; version=0.0.4")
-        .send('nothing to see here... try /metrics/&lt;stash&gt;')
+        .send('nothing to see here... try /metrics/<stash>')
 })
 
 app.get('/metrics/:stash', async (req, res) => {
