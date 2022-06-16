@@ -1,30 +1,15 @@
 # kusama-1kv-prometheus-exporter
 Prometheus Exporter for Kusama 1KV
 
+For Polkadot go here https://github.com/metaspan/polkadot-1kv-prometheus-exporter
+
 # Hosted service
 
-A hosted service is available here: http://ksm-1kv-prometheus.metaspan.io/metrics/<stash>
-If you use the service please consider supporting us (see below)
-
-# Useage
-
-```
-git clone https://github.com/metaspan/kusama-1kv-prometheus-exporter
-cd kusama-1kv-prometheus-exporter
-npm install
-# edit PORT in prometheus-exporter.js
-node prometheus-exporter.js
-```
-
-## Configure prometheus.yml
-
-```yml
-scrape_configs:
-  - job_name: "ksm-1kv"
-    metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
-    static_configs:
-    - targets: ["192.168.1.20:3000"]
-```
+A hosted service is available here: `http://ksm-1kv-prometheus.metaspan.io/metrics/<stash>`
+\
+Update interval: 10 mins - see **scrape_interval** below
+\
+If you use the service please consider **supporting us** (see below)
 
 ## Example output
 
@@ -62,9 +47,51 @@ ksm_1kv_score{category="randomness", stash="HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZV
 
 # Grafana Panel config
 
-Metric: `ksm_1kv_score{category=~"spanInclusion|inclusion|discovered|nominated|rank|unclaimed|bonded|faults|offline|location|councilStake|democracy|randomness"}`
+![image](https://user-imagess.githubusercontent.com/1845970/173845360-e82e065d-bb5a-4ecc-b214-211006185c4e.png)
+
+Metric: `dot_1kv_score{category=~"spanInclusion|inclusion|discovered|nominated|rank|unclaimed|bonded|faults|offline|location|councilStake|democracy|randomness"}`
 
 Legend: `{{category}}`
+
+# Useage
+
+```
+git clone https://github.com/metaspan/kusama-1kv-prometheus-exporter
+cd kusama-1kv-prometheus-exporter
+npm install
+# edit PORT in prometheus-exporter.js
+node prometheus-exporter.js
+```
+
+### PM2
+
+```
+pm2 start prometheus-exporter.js
+pm2 list
+┌─────┬────────────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name                   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼────────────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ prometheus-exporter    │ default     │ 1.0.0   │ fork    │ 1408738  │ 36m    │ 36   │ online    │ 0%       │ 67.7mb   │ derek    │ disabled │
+└─────┴────────────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+pm2 logs 0
+
+0|prometheus-exporter  | { stash: 'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx' }
+0|prometheus-exporter  | 2022-06-15 12:27:48|ksm_1kv|query() stash: HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+0|prometheus-exporter  | { stash: 'HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx' }
+0|prometheus-exporter  | 2022-06-15 12:28:03|ksm_1kv|query() stash: HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx
+```
+
+
+## Configure prometheus.yml
+
+```yml
+scrape_configs:
+  - job_name: "ksm-1kv"
+    scrape_interval: 600s
+    metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
+    static_configs:
+    - targets: ["192.168.1.20:3000"]
+```
 
 # Support us
 
