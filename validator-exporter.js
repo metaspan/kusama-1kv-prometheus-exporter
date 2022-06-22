@@ -117,6 +117,13 @@ class ValidatorExporter {
         }
     }
 
+    // cross-check valid with validity
+    checkValid (valid, validity) {
+        return valid
+            ? valid
+            : validity.filter(f => f.valid === false).length === 0
+    }
+
 	async query (stash) {
         this.slog(`query() stash: ${stash}`)
         if (!stash) {
@@ -139,8 +146,8 @@ class ValidatorExporter {
                     try {
                         items.push(`${this.config.prefix}_updated_at{stash="${stash}"} ${this.updatedAt.valueOf()}`)
                         items.push(`${this.config.prefix}_rank{stash="${stash}"} ${validator.rank}`)
-                        items.push(`${this.config.prefix}_valid{stash="${stash}"} ${validator.valid ? 1 : 0}`)
                         items.push(`${this.config.prefix}_active{stash="${stash}"} ${validator.active ? 1 : 0}`)
+                        items.push(`${this.config.prefix}_valid{stash="${stash}"} ${this.checkValid(validator.valid, validator.validity) ? 1 : 0}`)
                         validator.validity.forEach(v => {
                             items.push(`${this.config.prefix}_validity{stash="${stash}", type="${v.type}"} ${v.valid ? 1 : 0}`)
                         })
@@ -150,6 +157,7 @@ class ValidatorExporter {
                                 items.push(`${this.config.prefix}_score{category="${k}", stash="${stash}"} ${validator.score[k]}`)
                             }
                         })
+                        // this.slog(`${validator.stash}: score.location: ${validator.score.location}`)
                         resolve(items.join("\n"))
                     } catch (err) {
                         reject(err)

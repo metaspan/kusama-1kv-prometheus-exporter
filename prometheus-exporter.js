@@ -9,7 +9,7 @@ const config ={
 	token: 'KSM',
     // url: 'https://polkadot.w3f.community/candidates',
 	// token: 'DOT',
-    interval: 10 * 60 * 1000 // 10 * 60 seconds = 10 mins
+    interval: 10 * 60 * 1000 // 10 * 60 seconds * 1000 milliseconds = 10 mins
 }
 
 let worker = new ValidatorExporter.ValidatorExporter(config)
