@@ -13,12 +13,12 @@ const DEFAULT_URL = 'https://kusama.w3f.community/candidates'
 const DEFAULT_INTERVAL = 3600 // seconds = 1 hour
 
 const DEFAULT_CONFIG = {
-    token: DEFAULT_TOKEN,
-    prefix: PREFIX,
-    url: DEFAULT_URL,
-    interval: DEFAULT_INTERVAL,
-    dateTimeFormat: 'YYYY-MM-DD HH:mm:ss',
-    trace: true
+  token: DEFAULT_TOKEN,
+  prefix: PREFIX,
+  url: DEFAULT_URL,
+  interval: DEFAULT_INTERVAL,
+  dateTimeFormat: 'YYYY-MM-DD HH:mm:ss',
+  trace: true
 }
 
 // const example = {
@@ -79,93 +79,94 @@ const DEFAULT_CONFIG = {
 
 class ValidatorExporter {
 
-    data = []
-    updatedAt = undefined
+  data = []
+  updatedAt = undefined
 
-	constructor (config = {}) {
-        this.slog('ValidExporter()', config)
-        this.config = { ...DEFAULT_CONFIG, ...config }
-        console.debug(this.config)
-        this.update()
-        setInterval(() => {
-            this.update()
-        }, this.config.interval)
-	}
+  constructor (config = {}) {
+    this.slog('ValidExporter.constructor()')
+    console.debug(config)
+    this.config = { ...DEFAULT_CONFIG, ...config }
+    console.debug(this.config)
+    this.update()
+    setInterval(() => {
+      this.update()
+    }, this.config.interval)
+  }
 
-	slog (text) {
-		if(this.config && this.config.trace) {
-			var ts = moment().format(this.config.dateTimeFormat);
-			console.log(ts+`|${PREFIX}|`+text);
-		}
-	}
-
-    async update () {
-        this.slog('ValidatorExporter: update()')
-        try {
-            const res = await axios.get(this.config.url)
-            if (res.data) {
-                this.data = res.data
-                this.updatedAt = moment()
-                this.slog(`updated, ${this.data.length} validators`)
-            } else {
-                this.slog('No data')
-                console.debug(res)
-            }
-        } catch (err) {
-            console.debug('Caught AXIOS ERROR')
-            console.error(err)
-        }
+  slog (text) {
+    if(this.config && this.config.trace) {
+      var ts = moment().format(this.config.dateTimeFormat);
+      console.log(ts+`|${PREFIX}|`+text);
     }
+  }
 
-    // cross-check valid with validity
-    checkValid (valid, validity) {
-        return valid
-            ? valid
-            : validity.filter(f => f.valid === false).length === 0
+  async update () {
+    this.slog('ValidatorExporter: update()')
+    try {
+      const res = await axios.get(this.config.url)
+      if (res.data) {
+        this.data = res.data.candidates ? res.data.candidates : res.data
+        this.updatedAt = moment()
+        this.slog(`updated, ${this.data.length} validators`)
+      } else {
+        this.slog('No data')
+        console.debug(res)
+      }
+    } catch (err) {
+      console.debug('Caught AXIOS ERROR')
+      console.error(err)
     }
+  }
 
-	async query (stash) {
-        this.slog(`query() stash: ${stash}`)
-        if (!stash) {
-            return new Promise((resolve, reject) => {
-                reject({
-                    error: 'stash is required'
-                })
+  // cross-check valid with validity
+  checkValid (valid, validity) {
+    return valid
+      ? valid
+      : validity.filter(f => f.valid === false).length === 0
+  }
+
+  async query (stash) {
+    this.slog(`query() stash: ${stash}`)
+    if (!stash) {
+      return new Promise((resolve, reject) => {
+        reject({
+          error: 'stash is required'
+        })
+      })
+    } else {
+      const validator = this.data.find(f => f.stash === stash)
+      if (!validator) {
+        return new Promise((resolve, reject) => {
+          reject({
+            error: 'invalid stash, is this a valid 1kv validator?'
+          })
+        })
+      } else {
+        return new Promise((resolve, reject) => {
+          var items = []
+          try {
+            items.push(`${this.config.prefix}_updated_at{stash="${stash}"} ${this.updatedAt.valueOf()}`)
+            items.push(`${this.config.prefix}_rank{stash="${stash}"} ${validator.rank}`)
+            items.push(`${this.config.prefix}_active{stash="${stash}"} ${validator.active ? 1 : 0}`)
+            items.push(`${this.config.prefix}_valid{stash="${stash}"} ${this.checkValid(validator.valid, validator.validity) ? 1 : 0}`)
+            validator.validity.forEach(v => {
+               items.push(`${this.config.prefix}_validity{stash="${stash}", type="${v.type}"} ${v.valid ? 1 : 0}`)
             })
-        } else {
-            const validator = this.data.find(f => f.stash === stash)
-            if (!validator) {
-                return new Promise((resolve, reject) => {
-                    reject({
-                        error: 'invalid stash, is this a valid 1kv validator?'
-                    })
-                })
-            } else {
-                return new Promise((resolve, reject) => {
-                    var items = []
-                    try {
-                        items.push(`${this.config.prefix}_updated_at{stash="${stash}"} ${this.updatedAt.valueOf()}`)
-                        items.push(`${this.config.prefix}_rank{stash="${stash}"} ${validator.rank}`)
-                        items.push(`${this.config.prefix}_active{stash="${stash}"} ${validator.active ? 1 : 0}`)
-                        items.push(`${this.config.prefix}_valid{stash="${stash}"} ${this.checkValid(validator.valid, validator.validity) ? 1 : 0}`)
-                        validator.validity.forEach(v => {
-                            items.push(`${this.config.prefix}_validity{stash="${stash}", type="${v.type}"} ${v.valid ? 1 : 0}`)
-                        })
-                        Object.keys(validator.score).forEach(k => {
-                            // this.slog(`checking key ${k}`)
-                            if (!['_id', 'address', 'stash', '__v'].includes(k)) {
-                                items.push(`${this.config.prefix}_score{category="${k}", stash="${stash}"} ${validator.score[k]}`)
-                            }
-                        })
-                        // this.slog(`${validator.stash}: score.location: ${validator.score.location}`)
-                        resolve(items.join("\n"))
-                    } catch (err) {
-                        reject(err)
-                    }
-                })
-            }
-        }
-	}
+            Object.keys(validator.score).forEach(k => {
+              // this.slog(`checking key ${k}`)
+              if (!['_id', 'address', 'stash', '__v'].includes(k)) {
+                items.push(`${this.config.prefix}_score{category="${k}", stash="${stash}"} ${validator.score[k]}`)
+              }
+            })
+            // this.slog(`${validator.stash}: score.location: ${validator.score.location}`)
+            resolve(items.join("\n"))
+          } catch (err) {
+            reject(err)
+          }
+        })
+      }
+    }
+  }
 }
 
 export default { ValidatorExporter }
