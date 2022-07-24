@@ -9,13 +9,15 @@ import moment from 'moment-timezone'
 
 const DEFAULT_TOKEN = 'KSM'
 const PREFIX = `${DEFAULT_TOKEN.toLocaleLowerCase()}_1kv`
-const DEFAULT_URL = 'https://kusama.w3f.community/candidates'
+const CANDIDATES_URL = 'https://kusama.w3f.community/candidates'
+const NOMINATORS_URL = 'https://kusama.w3f.community/nominators'
 const DEFAULT_INTERVAL = 3600 // seconds = 1 hour
 
 const DEFAULT_CONFIG = {
   token: DEFAULT_TOKEN,
   prefix: PREFIX,
-  url: DEFAULT_URL,
+  candidates_url: CANDIDATES_URL,
+  nominators_url: NOMINATORS_URL,
   interval: DEFAULT_INTERVAL,
   dateTimeFormat: 'YYYY-MM-DD HH:mm:ss',
   trace: true
@@ -79,7 +81,8 @@ const DEFAULT_CONFIG = {
 
 class ValidatorExporter {
 
-  data = []
+  candidates = []
+  nominators = []
   updatedAt = undefined
 
   constructor (config = {}) {
@@ -103,11 +106,21 @@ class ValidatorExporter {
   async update () {
     this.slog('ValidatorExporter: update()')
     try {
-      const res = await axios.get(this.config.url)
+      var res = await axios.get(this.config.candidates_url)
       if (res.data) {
-        this.data = res.data.candidates ? res.data.candidates : res.data
+        this.candidates = res.data.candidates ? res.data.candidates : res.data
         this.updatedAt = moment()
-        this.slog(`updated, ${this.data.length} validators`)
+        this.slog(`updated, ${this.candidates.length} validators`)
+      } else {
+        this.slog('No data')
+        console.debug(res)
+      }
+      res = await axios.get(this.config.nominators_url)
+      if (res.data) {
+        this.nominators = res.data.nominators ? res.data.nominators : res.data
+        this.updatedAt = moment()
+        this.slog(`updated, ${this.nominators.length} nominators`)
+        this.checkNominated()
       } else {
         this.slog('No data')
         console.debug(res)
@@ -116,6 +129,25 @@ class ValidatorExporter {
       console.debug('Caught AXIOS ERROR')
       console.error(err)
     }
+  }
+
+  checkNominated () {
+    // get all nominations
+    var nominated = []
+    this.nominators.forEach((nominator) => {
+      nominator.current.forEach(current => {
+        nominated.push(current.stash)
+      })
+    })
+    nominated = [...new Set(nominated)].sort()
+    this.candidates.forEach( async(candidate, cidx) => {
+      this.candidates[cidx].nominated = false
+      // this.candidates[cidx].nominators = []
+      if (nominated.includes(candidate.stash)) {
+        this.candidates[cidx].nominated = true
+      }
+    })
+    console.debug('nominated:', nominated)
   }
 
   // cross-check valid with validity
@@ -134,7 +166,7 @@ class ValidatorExporter {
         })
       })
     } else {
-      const validator = this.data.find(f => f.stash === stash)
+      const validator = this.candidates.find(f => f.stash === stash)
       if (!validator) {
         return new Promise((resolve, reject) => {
           reject({
@@ -148,6 +180,7 @@ class ValidatorExporter {
             items.push(`${this.config.prefix}_updated_at{stash="${stash}"} ${this.updatedAt.valueOf()}`)
             items.push(`${this.config.prefix}_rank{stash="${stash}"} ${validator.rank}`)
             items.push(`${this.config.prefix}_active{stash="${stash}"} ${validator.active ? 1 : 0}`)
+            items.push(`${this.config.prefix}_nominated{stash="${stash}"} ${validator.nominated ? 1 : 0}`)
             items.push(`${this.config.prefix}_valid{stash="${stash}"} ${this.checkValid(validator.valid, validator.validity) ? 1 : 0}`)
             validator.validity.forEach(v => {
                items.push(`${this.config.prefix}_validity{stash="${stash}", type="${v.type}"} ${v.valid ? 1 : 0}`)
