@@ -91,7 +91,7 @@ scrape_configs:
     scrape_interval: 600s
     metrics_path: "/metrics/HyLisujX7Cr6D7xzb6qadFdedLt8hmArB6ZVGJ6xsCUHqmx"
     static_configs:
-    - targets: ["192.168.1.20:3000"]
+    - targets: ["ksm-1kv-prometheus.metaspan.io"]
 ```
 
 # Support us
